@@ -2,7 +2,7 @@
 
 from [real python](https://realpython.com/python-metaclasses)
 
-![[../statics/Python-Metaclasses_Watermarked.webp]]
+![python-metaclass](../statics/Python-Metaclasses_Watermarked.webp)
 
 ## Old-Style vs. New-Style Classes
 
@@ -60,7 +60,7 @@ In the above case:
 - `Foo` is an instance of the `type` metaclass.
 - `type` is also an instance of the `type` metaclass, so it is an instance of itself.
 
-![[../statics/class-chain.webp]]
+![class-chain](../statics/class-chain.webp)
 
 You can also call `type()` with three arguments—`type(<name>, <bases>, <dct>)`:
 
