@@ -1,8 +1,10 @@
 from __future__ import annotations
 
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 ## Ex1
 
 # attr, __repr__, __str__, __hash__
+
 
 class Student:
     """class for describe students"""
@@ -19,7 +21,9 @@ class Student:
         return hash((self.name, self.age, self.student_number))
 
 
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 # Ex2
 
@@ -41,7 +45,7 @@ class Complex:
         if isinstance(other, (int, float, complex, Complex)):
             return all([self.real == other.real, self.imag == other.imag])
         return NotImplemented
-    
+
     ## __ne__ auto checked from __eq__ between Complex and Complex
 
     def __ne__(self, other) -> bool:
@@ -65,5 +69,4 @@ class Complex:
         return NotImplemented
 
 
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 print()
