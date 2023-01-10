@@ -31,7 +31,6 @@ class Timeit:
         t1 = perf_counter()
         self.took = t1 - self.t0
         print(f"({self.label}) time took: {self.took:.5f} (sec)")
-        return self
 
 
 # without cache
