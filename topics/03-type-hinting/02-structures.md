@@ -69,5 +69,5 @@ class Resource(Protocol):
     # Error: Incompatible default for argument "foo" (default has
     # type "ellipsis", argument has type "list[str]")
     def not_ok(self, foo: list[str] = ...) -> None:
-        print(foo)
+        print(foo)  # <- this code is not valid here! (stubs)
 ```
