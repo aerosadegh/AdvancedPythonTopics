@@ -3,7 +3,7 @@ from __future__ import annotations
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 ## Ex1
 
-# attr, __repr__, __str__, __hash__
+# attr, __repr__, __str__, __hash__, __eq__
 
 
 class Student:
@@ -17,8 +17,16 @@ class Student:
     def __repr__(self):
         return f"{__class__.__name__}(name={self.name}, age={self.age}, student_number={self.student_number})"
 
+    def __attrs(self):
+        return (self.name, self.age, self.student_number)
+
     def __hash__(self) -> int:
-        return hash((self.name, self.age, self.student_number))
+        return hash(self.__attrs())
+
+    def __eq__(self, other):
+        if isinstance(other, self.__class__):
+            return self.__attrs() == other.__attrs()
+        return NotImplemented
 
 
 # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
