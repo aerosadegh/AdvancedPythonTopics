@@ -7,16 +7,16 @@ class ItemIterator:
 
     def __init__(self, *args) -> None:
         self.items = args
-        self.current_index = -1
-        self.items_len = len(self.items)
+        self.__current_index = -1
+        self.__items_len = len(self.items)
 
     def __iter__(self):
         return self
 
     def __next__(self):
-        self.current_index += 1
-        if self.current_index < self.items_len:
-            return self.items[self.current_index]
+        self.__current_index += 1
+        if self.__current_index < self.__items_len:
+            return self.items[self.__current_index]
         raise StopIteration
 
 
