@@ -130,11 +130,11 @@ quux(x=3, y=5)  # error: Unexpected keyword argument "x" for "quux"
 def call(self, *args: str, **kwargs: str) -> str:
     def make_request(*args, **kwargs):
         ...
+
     reveal_type(args)  # Revealed type is "tuple[str, ...]"
     reveal_type(kwargs)  # Revealed type is "dict[str, str]"
     request = make_request(*args, **kwargs)
     return self.do_api_query(request)
-
 
 
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -158,6 +158,7 @@ class MyClass:
     def my_method(self, num: int, str1: str) -> str:
         return num * str1
 
+
 # User-defined classes are valid as types in annotations
 my_class: MyClass = MyClass()
 
@@ -166,10 +167,12 @@ class Box:
     def __init__(self) -> None:
         self.items: List[str] = []
 
+
 # You can use the ClassVar annotation to declare a class variable
 class Car:
     seats: ClassVar[int] = 4
     passengers: ClassVar[List[str]]
+
 
 # If you want dynamic attributes on your class, have it
 # override "__setattr__" or "__getattr__":
@@ -178,15 +181,19 @@ class Car:
 class A:
     # This will allow assignment to any A.x, if x is the same type as "value"
     # (use "value: Any" to allow arbitrary types)
-    def __setattr__(self, name: str, value: int) -> None: ...
+    def __setattr__(self, name: str, value: int) -> None:
+        ...
 
     # This will allow access to any A.x, if x is compatible with the return type
-    def __getattr__(self, name: str) -> int: ...
+    def __getattr__(self, name: str) -> int:
+        ...
+
 
 aa = A()
 
 aa.foo = 42  # Works
-aa.bar = 'Ex-parrot'  # Fails type checking  
+# Fails type checking
+aa.bar = "Ex-parrot"  # type: ignore
 
 
 # %%

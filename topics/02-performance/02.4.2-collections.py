@@ -3,6 +3,7 @@ from typing import NamedTuple
 
 class Person(NamedTuple):
     """named tuple with default values"""
+
     name: str
     age: int
     height: float
@@ -14,5 +15,5 @@ print(issubclass(Person, tuple))  # True
 
 jane = Person("Jane", 25, 1.75, 67)
 print(jane.name)  # 'Jane'
-
-jane.name = "Jane Doe"  # Error
+# Error
+jane.name = "Jane Doe"  # type: ignore
