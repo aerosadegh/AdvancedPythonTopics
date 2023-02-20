@@ -36,6 +36,12 @@ class Items:
 
 items = Items(1, 2, 3, 4, 5)
 
+try:
+    print(f"Item index [3] is {items[3]}\n")  # type: ignore
+except Exception as e:
+    print(e)
+    print()
+
 print("Part 1: Iterable Execution returns values")
 
 for item in items:

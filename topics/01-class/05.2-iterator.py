@@ -1,6 +1,7 @@
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # Iterator example
 
+
 class Iterator:
     def __init__(self, *args) -> None:
         self.items = args
@@ -18,6 +19,12 @@ class Iterator:
 
 
 itr = Iterator(1, 2, 3, 4, 5)
+
+try:
+    print(f"Item index [3] is {itr[3]}\n")  # type: ignore
+except Exception as e:
+    print(e)
+    print()
 
 print("Part 1: Iterator Execution returns values")
 
