@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-## Ex1
+## Ex1: private method
 
 # attr, __repr__, __str__, __hash__, __eq__
 
@@ -33,7 +33,7 @@ class Student:
 
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-# Ex2
+# Ex2: order and hash
 
 # attr, __repr__, __str__, __hash__, __eq__, __ne__, __abs__, __gt__, __lt__
 
