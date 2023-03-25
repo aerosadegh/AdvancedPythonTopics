@@ -24,9 +24,9 @@ print(degrees_to_radians(n))  # Okay!
 int_attrs = [item for item in dir(2) if not item.startswith("_")]
 float_attrs = [item for item in dir(2.2) if not item.startswith("_")]
 complex_attrs = [item for item in dir(2.2j) if not item.startswith("_")]
-print(f"{int_attrs =       }")
-print(f"{float_attrs =     }")
-print(f"{complex_attrs =   }")
+print(f"{int_attrs     = }")
+print(f"{float_attrs   = }")
+print(f"{complex_attrs = }")
 print("\n  intersection:")
 # print(set(int_methods).intersection(float_methods))
 print(set(int_attrs).intersection(float_attrs).intersection(complex_attrs))
