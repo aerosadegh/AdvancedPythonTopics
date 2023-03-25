@@ -28,6 +28,8 @@ class Student:
             return self.__attrs() == other.__attrs()
         return NotImplemented
 
+s1 = Student("Ali", 21, 202245)
+s1
 
 # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
@@ -77,4 +79,15 @@ class Complex:
         return NotImplemented
 
 
-print()
+c1 = Complex(3, 4)
+print(c1)
+c2 = Complex(-2, -7)
+print(c2)
+print("gt", c1 > c2)
+print("lt", c1 < c2)
+print("eq", c1 == c2)
+print("ne", c1 != "abc")
+print(hash(c1))
+abs(c1)
+
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
