@@ -91,3 +91,34 @@ print(hash(c1))
 abs(c1)
 
 # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+# Ex3: repr!
+
+class Person:
+    """class for describe students"""
+
+    def __init__(self, name: str, age: int) -> None:
+        self.name = name
+        self.age = age
+
+    def __repr__(self):
+        return f"{type(self).__name__}(name={self.name!r}, age={self.age!r})" # child class
+        # return f"{self.__class__.__name__}(name={self.name!r}, age={self.age!r})" # child class
+        # return f"{__class__.__name__}(name={self.name!r}, age={self.age!r})"  # parent class
+
+
+class Teacher(Person):
+
+    def __init__(self, name: str, age: int, teacher_code) -> None:
+        super().__init__(name, age)
+        self.teacher_code = teacher_code
+
+
+
+t1 = Teacher("Ali", 21, 202245)
+t1
+
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
