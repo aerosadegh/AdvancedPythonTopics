@@ -122,3 +122,27 @@ t1
 
 # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+# Ex4: Scope
+
+
+name = "Python"
+
+class Rand:
+    name = "RandClass"
+    lst1 = [name] * 3
+    lst2 = [name for _ in range(3)]
+
+    def __repr__(self) -> str:
+        return f"{type(self).__name__}(name={self.name!r})"
+    
+
+r = Rand()
+
+
+print(r.name)
+print(r.lst1)
+print(r.lst2)
+r
+# %%
