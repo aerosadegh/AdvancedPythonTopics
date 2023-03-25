@@ -15,7 +15,7 @@ class Student:
         self.student_number = student_number
 
     def __repr__(self):
-        return f"{__class__.__name__}(name={self.name}, age={self.age}, student_number={self.student_number})"
+        return f"{type(self).__name__}(name={self.name!r}, age={self.age!r}, student_number={self.student_number!r})"
 
     def __attrs(self):
         return (self.name, self.age, self.student_number)
@@ -44,7 +44,7 @@ class Complex:
         self.imag = imag
 
     def __repr__(self):
-        return f"{__class__.__name__}(real={self.real}, imag={self.imag})"
+        return f"{type(self).__name__}(real={self.real!r}, imag={self.imag!r})"
 
     def __hash__(self) -> int:
         return hash((self.real, self.imag))
