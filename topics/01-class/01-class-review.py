@@ -28,6 +28,7 @@ class Student:
             return self.__attrs() == other.__attrs()
         return NotImplemented
 
+
 s1 = Student("Ali", 21, 202245)
 s1
 
@@ -64,7 +65,7 @@ class Complex:
         return NotImplemented
 
     def __abs__(self) -> float:
-        return pow(self.real ** 2 + self.imag ** 2, 0.5)
+        return pow(self.real**2 + self.imag**2, 0.5)
 
     def __gt__(self, other) -> bool:
         if isinstance(other, (int, float, complex, Complex)):
@@ -96,6 +97,7 @@ abs(c1)
 
 # Ex3: repr!
 
+
 class Person:
     """class for describe students"""
 
@@ -104,17 +106,15 @@ class Person:
         self.age = age
 
     def __repr__(self):
-        return f"{type(self).__name__}(name={self.name!r}, age={self.age!r})" # child class
+        return f"{type(self).__name__}(name={self.name!r}, age={self.age!r})"  # child class
         # return f"{self.__class__.__name__}(name={self.name!r}, age={self.age!r})" # child class
         # return f"{__class__.__name__}(name={self.name!r}, age={self.age!r})"  # parent class
 
 
 class Teacher(Person):
-
     def __init__(self, name: str, age: int, teacher_code) -> None:
         super().__init__(name, age)
         self.teacher_code = teacher_code
-
 
 
 t1 = Teacher("Ali", 21, 202245)
@@ -129,6 +129,7 @@ t1
 
 name = "Python"
 
+
 class Rand:
     name = "RandClass"
     lst1 = [name] * 3
@@ -136,7 +137,7 @@ class Rand:
 
     def __repr__(self) -> str:
         return f"{type(self).__name__}(name={self.name!r})"
-    
+
 
 r = Rand()
 
@@ -145,4 +146,151 @@ print(r.name)
 print(r.lst1)
 print(r.lst2)
 r
-# %%
+
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+# Ex5: Custom Dict: introducing the problem!
+
+# from https://realpython.com/inherit-python-dict/
+
+
+class UpperCase_dict1(dict):
+    def __setitem__(self, key, value):
+        key = key.upper()
+        super().__setitem__(key, value)
+
+
+d1 = UpperCase_dict1()
+d1["one"] = 1  # correct
+d1["two"] = 2  # correct
+d1["three"] = 3  # correct
+
+d1.update({"four": 4})  # incorrect
+print(d1)
+
+
+d2 = UpperCase_dict1({"one": 1, "two": 2, "three": 3})  # incorrect
+print(d2)
+
+
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+# Ex5: Fixed UpperCase_dict
+
+
+class UpperCase_dict2(dict):
+    def __init__(self, mapping=None, /, **kwargs):
+        if mapping is not None:
+            mapping = {str(key).upper(): value for key, value in mapping.items()}
+        else:
+            mapping = {}
+        if kwargs:
+            mapping.update({str(key).upper(): value for key, value in kwargs.items()})
+        super().__init__(mapping)
+
+    def __setitem__(self, key, value):
+        key = key.upper()
+        super().__setitem__(key, value)
+
+
+d3 = UpperCase_dict2({"one": 1, "two": 2, "three": 3})  # correct
+print(d3)
+
+
+d3.update({"four": 4})  # incorrect
+print(d3)
+
+
+# Why do dict subclasses behave this way? Built-in types were designed and
+# implemented with the `open–closed principle` in mind.
+# Therefore, they’re open to extension but closed to modification.
+# Allowing modifications to the core features of these classes can
+# potentially break their `invariants`.
+# So, Python core developers decided to protect them from modifications.
+
+
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+# Ex5: Fixed UpperCaseDict
+
+from collections import UserDict
+
+
+class UpperCaseDict(UserDict):
+    def __setitem__(self, key, value):
+        key = key.upper()
+        super().__setitem__(key, value)
+
+
+numbers = UpperCaseDict({"one": 1, "two": 2})
+numbers["three"] = 3
+numbers.update({"four": 4})
+numbers.setdefault("five", 5)
+
+numbers
+
+
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+# Ex6: Custom Dict :: Considering Performance
+
+import timeit
+from collections import UserDict
+
+
+class ExtendedDict_dict(dict):
+    def apply(self, action):
+        for key, value in self.items():
+            self[key] = action(value)
+
+    def remove(self, key):
+        del self[key]
+
+    def is_empty(self):
+        return len(self) == 0
+
+
+class ExtendedDict_UserDict(UserDict):
+    def apply(self, action):
+        for key, value in self.items():
+            self[key] = action(value)
+
+    def remove(self, key):
+        del self[key]
+
+    def is_empty(self):
+        return len(self) == 0
+
+
+init_data = dict(zip(range(1000), range(1000)))
+
+dict_initialization = min(
+    timeit.repeat(
+        stmt="ExtendedDict_dict(init_data)",
+        number=1000,
+        repeat=5,
+        globals=globals(),
+    )
+)
+
+user_dict_initialization = min(
+    timeit.repeat(
+        stmt="ExtendedDict_UserDict(init_data)",
+        number=1000,
+        repeat=5,
+        globals=globals(),
+    )
+)
+
+print(
+    f"UserDict is {user_dict_initialization / dict_initialization:.3f}",
+    "times slower than dict",
+)
