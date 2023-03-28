@@ -83,3 +83,5 @@ These legacy types defined in [`typing`](https://docs.python.org/3/library/typi
 `List` is an alias for the built-in type `list` that supports indexing (and similarly for `dict`/`Dict` and `tuple`/`Tuple`).
 
 Note that even though `Iterable`, `Sequence` and `Mapping` look similar to abstract base classes defined in [`collections.abc`](https://docs.python.org/3/library/collections.abc.html#module-collections.abc "(in Python v3.11)") (formerly `collections`), they are not identical, since the latter don’t support indexing prior to Python 3.9.
+
+❗ See Also [real python: Python Type Checking (Guide)](https://realpython.com/python-type-checking/) for more description!
