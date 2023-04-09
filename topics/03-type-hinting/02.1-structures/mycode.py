@@ -1,9 +1,12 @@
+from typing import TYPE_CHECKING
 from pkg import process
 
 
 
 pr = process(5)
-reveal_type(pr)
+if TYPE_CHECKING:
+    reveal_type(pr)
 
 pr2 = process(bytes("123", encoding="utf8"))
-reveal_type(pr2)
+if TYPE_CHECKING:
+    reveal_type(pr2)

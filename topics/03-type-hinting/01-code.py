@@ -74,7 +74,7 @@ print(r.upper())
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 ## Functions
 
-from typing import Callable, Iterator, Union, Optional, List
+from typing import Callable, Iterator, Union, Optional, List, TYPE_CHECKING
 
 # This is how you annotate a function definition
 def stringify(num: int) -> str:
@@ -130,9 +130,9 @@ quux(x=3, y=5)  # error: Unexpected keyword argument "x" for "quux"
 def call(self, *args: str, **kwargs: str) -> str:
     def make_request(*args, **kwargs):
         ...
-
-    reveal_type(args)  # Revealed type is "tuple[str, ...]"
-    reveal_type(kwargs)  # Revealed type is "dict[str, str]"
+    if TYPE_CHECKING:
+        reveal_type(args)  # Revealed type is "tuple[str, ...]"
+        reveal_type(kwargs)  # Revealed type is "dict[str, str]"
     request = make_request(*args, **kwargs)
     return self.do_api_query(request)
 
