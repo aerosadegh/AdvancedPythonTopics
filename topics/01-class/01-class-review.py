@@ -294,3 +294,46 @@ print(
     f"UserDict is {user_dict_initialization / dict_initialization:.3f}",
     "times slower than dict",
 )
+
+
+
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+# Ex7.1: Code with WRONG default value definition
+from typing import List
+
+
+class A:
+    def __init__(self, items: List = []):  # wrong! list is mutable!
+        self.items = items
+
+
+a1 = A()
+b1 = A()
+
+a1.items.extend(["item1", "item2", "item3"])
+
+print(f"{a1.items=}")
+print(f"{b1.items=}")
+
+# %%
+# Ex7.2: Code with CORRECT default value definition
+from typing import List
+
+
+class B:
+    def __init__(self, items: List = None):
+        self.items = items or list()  # correct! instantiate a list when construct object!
+
+
+a2 = B()
+b2 = B()
+
+a2.items.extend(["item1", "item2", "item3"])
+
+print(f"{a2.items=}")
+print(f"{b2.items=}")
+
+# %%
