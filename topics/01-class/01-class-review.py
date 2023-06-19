@@ -53,14 +53,14 @@ class Complex:
         return hash((self.real, self.imag))
 
     def __eq__(self, other) -> bool:
-        if isinstance(other, (int, float, complex, Complex)):
+        if isinstance(other, (int, float, complex, self.__class__)):
             return all([self.real == other.real, self.imag == other.imag])
         return NotImplemented
 
     ## __ne__ auto checked from __eq__ between Complex and Complex
 
     def __ne__(self, other) -> bool:
-        if isinstance(other, (int, float, complex, Complex)):
+        if isinstance(other, (int, float, complex, self.__class__)):
             return all([self.real != other.real, self.imag != other.imag])
         return NotImplemented
 
@@ -68,14 +68,14 @@ class Complex:
         return pow(self.real**2 + self.imag**2, 0.5)
 
     def __gt__(self, other) -> bool:
-        if isinstance(other, (int, float, complex, Complex)):
+        if isinstance(other, (int, float, complex, self.__class__)):
             return abs(self) > abs(other)
         return NotImplemented
 
     ## __lt__ auto checked from __gt__ between Complex and Complex
 
     def __lt__(self, other) -> bool:
-        if isinstance(other, (int, float, complex, Complex)):
+        if isinstance(other, (int, float, complex, self.__class__)):
             return abs(self) < abs(other)
         return NotImplemented
 
@@ -133,7 +133,9 @@ name = "Python"
 class Rand:
     name = "RandClass"
     lst1 = [name] * 3
-    lst2 = [name for _ in range(3)]
+    lst2 = [name for i in range(3)]
+    lst3 = [name] * 3
+    lst4 = [name, name, name]
 
     def __repr__(self) -> str:
         return f"{type(self).__name__}(name={self.name!r})"
@@ -142,9 +144,11 @@ class Rand:
 r = Rand()
 
 
-print(r.name)
+# print(r.name)
 print(r.lst1)
 print(r.lst2)
+print(r.lst3)
+print(r.lst4)
 r
 
 # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
@@ -172,6 +176,7 @@ print(d1)
 
 
 d2 = UpperCase_dict1({"one": 1, "two": 2, "three": 3})  # incorrect
+d2 = UpperCase_dict1(one=1, two=2, three=3)  # incorrect
 print(d2)
 
 
@@ -320,11 +325,11 @@ print(f"{b1.items=}")
 
 # %%
 # Ex7.2: Code with CORRECT default value definition
-from typing import List
+from typing import List, Optional
 
 
 class B:
-    def __init__(self, items: List = None):
+    def __init__(self, items: Optional[List] = None):
         self.items = items or list()  # correct! instantiate a list when construct object!
 
 
