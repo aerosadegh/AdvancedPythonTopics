@@ -38,7 +38,7 @@ s1
 
 # Ex2: order and hash
 
-# attr, __repr__, __str__, __hash__, __eq__, __ne__, __abs__, __gt__, __lt__
+# __repr__, __str__, __hash__, __eq__, __ne__, __abs__, __gt__, __lt__
 
 
 class Complex:
@@ -158,7 +158,7 @@ t1
 
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-# Ex4: Scope
+# Ex4: Scope of the list comprehension in class variables
 
 
 name = "Python"
@@ -167,7 +167,7 @@ name = "Python"
 class Rand:
     name = "RandClass"
     lst1 = [name] * 3
-    lst2 = [name for i in range(3)]
+    lst2 = [name for i in range(3)]  # In this case list-comprehension uses out of scope variables!
     lst3 = [name] * 3
     lst4 = [name, name, name]
 
