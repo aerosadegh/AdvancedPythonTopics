@@ -93,6 +93,40 @@ abs(c1)
 
 # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
+
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+# Ex2.2: custom method call
+
+# absq
+
+
+class Custom:
+    def __init__(self, real: float, imag: float) -> None:
+        self.real = real
+        self.imag = imag
+
+    def __repr__(self):
+        return f"{type(self).__name__}(real={self.real!r}, imag={self.imag!r})"
+
+    def method(self) -> float:
+        return pow(self.real**2 + self.imag**2, 0.5)
+
+cu1 = Custom(3, 4)
+cu2 = Custom(-2, -7)
+print(cu1)
+print(cu2)
+
+# approach 1
+print(Custom.method(cu1))
+
+# approach 2
+print(cu1.method())
+
+
+# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 # Ex3: repr!
