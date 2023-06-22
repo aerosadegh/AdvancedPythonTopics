@@ -16,7 +16,7 @@ class Square(Rectangle):
     def __init__(self, side_size):
         super().__init__(side_size, side_size)
 
-    def resize(self, side_size):
+    def resize(self, side_size):  # Changes the side resize behavior will confuse the user
         self._length = side_size
         self._height = side_size
 

@@ -109,3 +109,70 @@ Dive in the [code](04.1.4.1-inheritance.py) part 1
 Dive in the [code](04.1.4.2-inheritance.py) part 2
 
 ### Composition to Model “Has A” Relationship
+
+Sample Code for inheritance:
+
+```python
+from abs import ABS, abstractmethod
+
+class Shape(ABS):
+    @abstractmethod
+    def area(self):
+        pass
+    
+    @abstractmethod
+    def resize(self, height, width):
+        pass
+
+class Rectangle(Shape):
+    def __init__(self, height, width):
+        self.height = height
+        self.width = width
+        
+    def area(self):
+        return self.height * self.width
+    
+    def resize(self, height, width):
+        self.height = height
+        self.width = width
+
+class Square(Shape):
+    def __init__(self, side):
+        self.side = side
+        self.shape = Rectangle(side, side)
+        
+    def area(self):
+        return self.shape.area()
+    
+    def resize(self, side):   # Why changed the input args here as opposed to the abstract definition?
+        self.side = side
+        self.shape.resize(side, side)
+```
+
+Sample Code for composition:
+
+```python
+class Rectangle:
+    def __init__(self, height, width):
+        self.height = height
+        self.width = width
+        
+    def area(self):
+        return self.height * self.width
+    
+    def resize(self, height, width):
+        self.height = height
+        self.width = width
+        
+class Square:
+    def __init__(self, side):
+        self.side = side
+        self.rectangle = Rectangle(side, side)
+        
+    def area(self):
+        return self.rectangle.area()
+    
+    def resize(self, side):
+        self.side = side
+        self.rectangle.resize(side, side)
+```
