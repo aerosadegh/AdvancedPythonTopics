@@ -1,24 +1,36 @@
 from timeit import timeit
-from random import randint
+from random import randint, seed
 
-values = [randint(1, 1000) for _ in range(1000)]
-code = "sort(values)"
 
+def get_values():
+    return [randint(1, 10000) for _ in range(700)]
+
+
+code = "sort(get_values())"
+
+
+# Part 1
+seed(200)
 
 t1 = timeit(
     code,
     setup="from sort import sort",
     number=1000,
-    globals={"values": values},
+    globals={"get_values": get_values},
 )
+####################################
+# Part 2
+seed(200)
 
 t2 = timeit(
     code,
     setup="from csort import sort",
     number=1000,
-    globals={"values": values},
+    globals={"get_values": get_values},
 )
+####################################
 
+# Report
 print(f"Python: {t1:.3f} sec")
 print(f"Cython: {t2:.3f} sec")
 print(f"Cython is {t1/t2:.3f}x faster!")
