@@ -104,6 +104,10 @@ def g(n: int) -> Iterator[int]:
         i += 1
 
 
+g5 = g(5)
+next_g = next(g5)
+next_g  # int methods
+
 # You can of course split a function annotation over multiple lines
 def send_email(
     address: Union[str, List[str]],
@@ -119,7 +123,7 @@ def send_email(
 # Mypy understands positional-only and keyword-only arguments
 # Positional-only arguments can also be marked by using a name starting with
 # two underscores
-def quux(x: int, y: int) -> None:
+def quux(a: int, y: int) -> None:
     pass
 
 
@@ -130,6 +134,7 @@ quux(x=3, y=5)  # error: Unexpected keyword argument "x" for "quux"
 def call(self, *args: str, **kwargs: str) -> str:
     def make_request(*args, **kwargs):
         ...
+
     if TYPE_CHECKING:
         reveal_type(args)  # Revealed type is "tuple[str, ...]"
         reveal_type(kwargs)  # Revealed type is "dict[str, str]"

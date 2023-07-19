@@ -49,7 +49,13 @@ print("\n  intersection:")
 print(" ** int, float Type:")
 print(set(int_attrs).intersection(float_attrs))
 print("\n ** All numbers Type:")
-print(set(int_attrs).intersection(float_attrs).intersection(complex_attrs).intersection(decimal_attrs).intersection(fraction_attrs))
+print(
+    set(int_attrs)
+    .intersection(float_attrs)
+    .intersection(complex_attrs)
+    .intersection(decimal_attrs)
+    .intersection(fraction_attrs)
+)
 
 
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
