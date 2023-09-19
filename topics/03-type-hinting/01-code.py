@@ -198,7 +198,7 @@ aa = A()
 
 aa.foo = 42  # Works
 # Fails type checking
-aa.bar = "Ex-parrot"  # type: ignore
+aa.bar = "Ex-parrot"
 
 
 # %%
